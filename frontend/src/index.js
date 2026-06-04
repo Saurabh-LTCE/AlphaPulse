@@ -29,4 +29,4 @@ root.render(
     </Routes>
     <Footer />
   </BrowserRouter>
-);
+); 

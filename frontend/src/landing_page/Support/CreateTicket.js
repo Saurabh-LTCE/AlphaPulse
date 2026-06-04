@@ -44,186 +44,150 @@ function CreateTicket() {
         </div>
         <div className="col-4 p-5 mt-2 mb-2">
           <h4 className="">
-            <i class="fa fa-plus-circle" aria-hidden="true"></i> Account Opening
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Your AlphaPulse Account
           </h4>
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Online Account Opening
+            Login Credentials
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Offline Account Opening
+            Account Modification and Segment Addition
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Company, Partnership and HUF Account
+            DP ID and Bank details
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Opening
+            Your profile
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            NRI Account Opening
-          </a>
-          <br />
-          <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Charges at Zerodha
-          </a>
-          <br />
-          <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Zerodha IDFC FIRST Bank 3-in-1 Account
-          </a>
-          <br />
-          <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Getting Started
+            Transfer and Conversion of Details
           </a>
           <br />
         </div>
         <div className="col-4 p-5 mt-2 mb-2">
           <h4 className="">
-            <i class="fa fa-plus-circle" aria-hidden="true"></i> Account Opening
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Your Account
           </h4>
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Online Account Opening
+            Margin/Leverage, Products and Order Types
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Offline Account Opening
+            Funds, Withdrawals and Deposits
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Company, Partnership and HUF Account
+          Tradings FAQs
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Opening
+           Kite Apis
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            NRI Account Opening
+            Mobile and Web Trading
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Charges at Zerodha
+          Pi and Other Trading Platforms
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Zerodha IDFC FIRST Bank 3-in-1 Account
+            Stocks Reports
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Getting Started
+           GTT
           </a>
           <br />
         </div>
         <div className="col-4 p-5 mt-2 mb-2">
           <h4 className="">
-            <i class="fa fa-plus-circle" aria-hidden="true"></i> Account Opening
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Funds
           </h4>
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Online Account Opening
+           Adding Funds
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Offline Account Opening
+           Fund Withdrawal
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Company, Partnership and HUF Account
+           eMandates
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Opening
-          </a>
-          <br />
-          <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            NRI Account Opening
-          </a>
-          <br />
-          <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Charges at Zerodha
-          </a>
-          <br />
-          <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Zerodha IDFC FIRST Bank 3-in-1 Account
-          </a>
-          <br />
-          <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Getting Started
+            Adding bank accounts
           </a>
           <br />
         </div>
         <div className="col-4 p-5 mt-2 mb-2">
           <h4 className="">
-            <i class="fa fa-plus-circle" aria-hidden="true"></i> Account Opening
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Console
           </h4>
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Online Account Opening
+           Reporting and Analytics
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Offline Account Opening
+            Ledger and P&L
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Company, Partnership and HUF Account
+            Portfolio and Holdings
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Opening
+          60 Day Challenge
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            NRI Account Opening
+           IPOs
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Charges at Zerodha
-          </a>
-          <br />
-          <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Zerodha IDFC FIRST Bank 3-in-1 Account
-          </a>
-          <br />
-          <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Getting Started
+           Referral Program
           </a>
           <br />
         </div>
         <div className="col-4 p-5 mt-2 mb-2">
           <h4 className="">
-            <i class="fa fa-plus-circle" aria-hidden="true"></i> Account Opening
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Coin
           </h4>
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Online Account Opening
+            Understanding Mutual Funds
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Offline Account Opening
+         About Coin
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Company, Partnership and HUF Account
+           Buying and Selling Mutual Funds
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Opening
+            starting an SIP
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            NRI Account Opening
+            Managing your Coin Account
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Charges at Zerodha
+            Coin App
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Zerodha IDFC FIRST Bank 3-in-1 Account
+          Mobile to Coin
           </a>
           <br />
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
-            Getting Started
+          Government Securities
           </a>
           <br />
         </div>
