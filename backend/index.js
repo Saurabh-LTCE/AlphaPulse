@@ -4,11 +4,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const authRoute = require("./Routes/AuthRoute");
 
-const { HoldingsModel } = require("./model/HoldingsModel");
+const { HoldingsModel } = require("./Models/HoldingsModel");
 
-const { PositionsModel } = require("./model/PositionsModel");
-const { OrdersModel } = require("./model/OrdersModel");
+const { PositionsModel } = require("./Models/PositionsModel");
+const { OrdersModel } = require("./Models/OrdersModel");
 
 const PORT = process.env.PORT || 3002;
 const uri = process.env.MONGODB_URI;
@@ -17,6 +19,8 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use("/", authRoute);
 
 app.get("/allHoldings", async (req, res) => {
   let allHoldings = await HoldingsModel.find({});

@@ -19,7 +19,7 @@ const Positions = () => {
             <th>Chg.</th>
           </tr>
 
-            {positions.map((stock, index) => {
+          {positions.map((stock, index) => {
             const curValue = stock.price * stock.qty;
             const isProfit = curValue - stock.avg * stock.qty >= 0.0;
             const profClass = isProfit ? "profit" : "loss";
