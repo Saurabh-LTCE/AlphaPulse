@@ -43,7 +43,7 @@ const Signup = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/dashboard");
+          navigate("/login");
         }, 1000);
       } else {
         handleError(message);
