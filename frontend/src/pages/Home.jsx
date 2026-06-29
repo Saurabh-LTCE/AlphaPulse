@@ -22,8 +22,8 @@ const Home = () => {
       setUsername(user);
       return status
         ? toast(`Hello ${user}`, {
-            position: "top-right",
-          })
+          position: "top-right",
+        })
         : (removeCookie("token"), navigate("/login"));
     };
     verifyCookie();

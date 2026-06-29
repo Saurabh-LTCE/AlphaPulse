@@ -12,13 +12,18 @@ const { HoldingsModel } = require("./Models/HoldingsModel");
 const { PositionsModel } = require("./Models/PositionsModel");
 const { OrdersModel } = require("./Models/OrdersModel");
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 4000;
 const uri = process.env.MONGODB_URI;
 
 const app = express();
-
-app.use(cors());
-app.use(bodyParser.json());
+//checkin redirect
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+app.use(express.json());
 app.use(cookieParser());
 app.use("/", authRoute);
 
@@ -40,7 +45,7 @@ app.post("/newOrder", async (req, res) => {
     mode: req.body.mode,
   });
 
-  newOrder.save();
+  await newOrder.save();
 
   res.send("Order saved!");
 });

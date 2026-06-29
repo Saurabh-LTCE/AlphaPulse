@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "./Signup.css";
 
 const Signup = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -29,6 +29,9 @@ const Signup = () => {
       position: "bottom-right",
     });
 
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -39,15 +42,26 @@ const Signup = () => {
         },
         { withCredentials: true }
       );
+        
+      //check the response data
+      console.log("Response:", data);
+
       const { success, message } = data;
+
       if (success) {
         handleSuccess(message);
+
         setTimeout(() => {
-          navigate("/login");
+          //alert checking
+          alert("Signup Successful");
+          window.location.href = "http://localhost:3001";
+
         }, 1000);
+
       } else {
         handleError(message);
       }
+      
     } catch (error) {
       console.log(error);
     }
@@ -61,46 +75,46 @@ const Signup = () => {
 
   return (
     <div className="auth-page">
-    <div className="Signup-form_container">
-      <h2>Signup Account</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            placeholder="Enter your email"
-            onChange={handleOnChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            placeholder="Enter your username"
-            onChange={handleOnChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            placeholder="Enter your password"
-            onChange={handleOnChange}
-          />
-        </div>
-        <button type="submit">Submit</button>
-        <span>
-          Already have an account? <Link to={"/login"}>Login</Link>
-        </span>
-      </form>
-      <ToastContainer />
-    </div>
+      <div className="Signup-form_container">
+        <h2>Signup Account</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              placeholder="Enter your email"
+              onChange={handleOnChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              value={username}
+              placeholder="Enter your username"
+              onChange={handleOnChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Enter your password"
+              onChange={handleOnChange}
+            />
+          </div>
+          <button type="submit">Submit</button>
+          <span>
+            Already have an account? <Link to={"/login"}>Login</Link>
+          </span>
+        </form>
+        <ToastContainer />
+      </div>
     </div>
   );
 };

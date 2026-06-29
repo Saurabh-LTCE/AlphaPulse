@@ -15,8 +15,8 @@ import NotFound from "./landing_page/NotFound";
 import Navbar from "./landing_page/Navbar";
 import Footer from "./landing_page/Footer";
 
- import Login from "./pages/Login";
- import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 
 
@@ -27,9 +27,9 @@ root.render(
     <Navbar />
     <Routes>
       <Route path="/" element={<HomePage />} />
-      { <Route path="/Signup" element={<Signup />} /> }
-      { <Route path="/Login" element={<Login />} /> }
-      { <Route path="/Home" element={<Home />} /> }
+      {<Route path="/Signup" element={<Signup />} />}
+      {<Route path="/Login" element={<Login />} />}
+      {<Route path="/Home" element={<Home />} />}
       <Route path="/About" element={<AboutPage />} />
       <Route path="/Product" element={<ProductPage />} />
       <Route path="/Pricing" element={<PricingPage />} />
