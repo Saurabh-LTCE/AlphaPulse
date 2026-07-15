@@ -7,10 +7,10 @@ function Navbar() {
       className="navbar navbar-expand-lg border-bottom"
       style={{ backgroundColor: "#FFF" }}
     >
-      <div className="container p-2">
+      <div className="container p-0">
         <Link className="navbar-brand" to="/">
           <img
-            src="media/images/logo.svg"
+            src="media/images/alphalogo.png"
             style={{ width: "25%" }}
             alt="Logo"
           />
