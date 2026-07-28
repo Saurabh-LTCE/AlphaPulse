@@ -2,6 +2,24 @@ const User = require("../Models/UserModel");
 const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcrypt");
 
+const getUserFromToken = async (req) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return null;
+  }
+
+  const jwt = require("jsonwebtoken");
+
+  try {
+    const data = jwt.verify(token, process.env.TOKEN_KEY);
+    const user = await User.findById(data.id);
+    return user || null;
+  } catch (error) {
+    return null;
+  }
+};
+
 module.exports.Signup = async (req, res, next) => {
 
   // checkinf redirect
@@ -28,6 +46,38 @@ module.exports.Signup = async (req, res, next) => {
     next();
   } catch (error) {
     console.error(error);
+  }
+};
+
+module.exports.getMe = async (req, res) => {
+  try {
+    const user = await getUserFromToken(req);
+
+    if (!user) {
+      return res.status(401).json({ status: false });
+    }
+
+    return res.status(200).json({
+      status: true,
+      fullName: user.username,
+      email: user.email,
+    });
+  } catch (error) {
+    console.error("Failed to fetch current user:", error);
+    return res.status(500).json({ status: false });
+  }
+};
+
+module.exports.logout = async (req, res) => {
+  try {
+    res.clearCookie("token", {
+      path: "/",
+    });
+
+    return res.status(200).json({ success: true, message: "Logged out successfully" });
+  } catch (error) {
+    console.error("Failed to logout:", error);
+    return res.status(500).json({ success: false, message: "Failed to logout" });
   }
 };
 

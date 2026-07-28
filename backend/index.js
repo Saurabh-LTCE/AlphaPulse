@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
+const orderRoute = require("./Routes/orderRoute");
+const paymentRoute = require("./Routes/paymentRoute");
 
 const { HoldingsModel } = require("./Models/HoldingsModel");
 
@@ -16,16 +18,16 @@ const PORT = process.env.PORT || 4000;
 const uri = process.env.MONGODB_URI;
 
 const app = express();
+const stockRoute = require("./Routes/stockRoute");
 //checkin redirect
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-);
+app.use( cors({ origin: ["http://localhost:3000", "http://localhost:3001"], credentials: true, }) );
 app.use(express.json());
 app.use(cookieParser());
 app.use("/", authRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/stocks", stockRoute);
+app.use("/api/orders", orderRoute);
+app.use("/api/payments", paymentRoute);
 
 app.get("/allHoldings", async (req, res) => {
   let allHoldings = await HoldingsModel.find({});

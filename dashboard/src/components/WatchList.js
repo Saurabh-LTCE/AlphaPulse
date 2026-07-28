@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import GeneralContext from "./GeneralContext";
 
-import { Tooltip, Grow } from "@mui/material";
+import { Grow, Tooltip } from "@mui/material";
 
 import {
   BarChartOutlined,
@@ -11,12 +11,86 @@ import {
   MoreHoriz,
 } from "@mui/icons-material";
 
-import { watchlist } from "../data/data";
 import { DoughnutChart } from "./DoughnoutChart";
+import { getWatchList } from "../services/stockservice";
 
-const labels = watchlist.map((subArray) => subArray["name"]);
+const formatPercent = (value) => {
+  const numericValue = Number(value);
+
+  if (!Number.isFinite(numericValue)) {
+    return "0.00%";
+  }
+
+  return `${numericValue > 0 ? "+" : ""}${numericValue.toFixed(2)}%`;
+};
+
+const toWatchListItem = (stock) => ({
+  symbol: stock.symbol,
+  name: String(stock.symbol || "").replace(/\.NS$/i, ""),
+  price: Number(stock.regularMarketPrice ?? 0),
+  percent: formatPercent(stock.regularMarketChangePercent),
+  isDown: Number(stock.regularMarketChangePercent) < 0,
+});
 
 const WatchList = () => {
+  const [watchlist, setWatchlist] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const requestLockRef = useRef(false);
+  const initialLoadRef = useRef(false);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadWatchList = async () => {
+      if (requestLockRef.current) {
+        return;
+      }
+
+      requestLockRef.current = true;
+
+      if (!initialLoadRef.current) {
+        setLoading(true);
+      }
+
+      try {
+        const liveWatchList = await getWatchList();
+        const safeWatchList = Array.isArray(liveWatchList) ? liveWatchList : [];
+
+        if (isMounted) {
+          setWatchlist(safeWatchList.map(toWatchListItem));
+        }
+      } catch (error) {
+        console.error("Failed to load watchlist:", error);
+        if (isMounted) {
+          setWatchlist([]);
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+
+        initialLoadRef.current = true;
+        requestLockRef.current = false;
+      }
+    };
+
+    loadWatchList();
+    const intervalId = setInterval(loadWatchList, 60000);
+    const handlePortfolioUpdate = () => {
+      loadWatchList();
+    };
+
+    window.addEventListener("portfolio-updated", handlePortfolioUpdate);
+
+    return () => {
+      isMounted = false;
+      clearInterval(intervalId);
+      window.removeEventListener("portfolio-updated", handlePortfolioUpdate);
+    };
+  }, []);
+
+  const labels = watchlist.map((stock) => stock.name);
+
   const data = {
     labels,
     datasets: [
@@ -84,11 +158,17 @@ const WatchList = () => {
         <span className="counts"> {watchlist.length} / 50</span>
       </div>
 
-      <ul className="list">
-        {watchlist.map((stock, index) => {
-          return <WatchListItem stock={stock} key={index} />;
-        })}
-      </ul>
+      {loading && !watchlist.length ? (
+        <div className="watchlist-skeleton-wrap">
+          <WatchListSkeleton />
+        </div>
+      ) : (
+        <ul className="list">
+          {watchlist.map((stock, index) => {
+            return <WatchListItem stock={stock} key={stock.symbol || index} />;
+          })}
+        </ul>
+      )}
 
       <DoughnutChart data={data} />
     </div>
@@ -96,6 +176,23 @@ const WatchList = () => {
 };
 
 export default WatchList;
+
+const WatchListSkeleton = () => {
+  return (
+    <ul className="list skeleton-list">
+      {Array.from({ length: 6 }).map((_, index) => (
+        <li key={index} className="skeleton-row watchlist-skeleton-row">
+          <div className="skeleton-block skeleton-title" />
+          <div className="skeleton-inline-group">
+            <div className="skeleton-block skeleton-chip" />
+            <div className="skeleton-block skeleton-chip short" />
+            <div className="skeleton-block skeleton-chip" />
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 const WatchListItem = ({ stock }) => {
   const [showWatchlistActions, setShowWatchlistActions] = useState(false);
@@ -122,7 +219,7 @@ const WatchListItem = ({ stock }) => {
           <span className="price">{stock.price}</span>
         </div>
       </div>
-      {showWatchlistActions && <WatchListActions uid={stock.name} />}
+      {showWatchlistActions && <WatchListActions uid={stock.symbol || stock.name} />}
     </li>
   );
 };
@@ -132,6 +229,10 @@ const WatchListActions = ({ uid }) => {
 
   const handleBuyClick = () => {
     generalContext.openBuyWindow(uid);
+  };
+
+  const handleSellClick = () => {
+    generalContext.openSellWindow(uid);
   };
 
   return (
@@ -151,6 +252,7 @@ const WatchListActions = ({ uid }) => {
           placement="top"
           arrow
           TransitionComponent={Grow}
+          onClick={handleSellClick}
         >
           <button className="sell">Sell</button>
         </Tooltip>
